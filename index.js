@@ -25,7 +25,6 @@ class FormData {
                 this.repass = value
                 break;
             default:
-                console.log("Error en el form")
                 break;
         }
     }
@@ -48,7 +47,6 @@ class FormData {
                 value = this.repass
                 break;
             default:
-                console.log("Error en el form")
                 break;
         }
         return value
@@ -160,24 +158,55 @@ function handleBlur(event){
 //Por último, funciones de mi form invisible
 
 //Lo mismo que antes, esta clase estaría en otro archivo
-class newForm {
+//Esta es una clase del tipo componente de DOM, la cual contiene
+//toda la lógica de un objeto, en este caso un formulario
+class NewForm {
     constructor (fields,container){
         this.fields = fields
         this.container = container
+        this.name = ""
+        this.formNode = ""
+        this.formData = ""
     }
 
+    //Método que monta el formulario en el DOM
     createForm(name){
-        this.container.innerHTML = 
-            this.fields.map((field)=>{
-                return (
-                    `<input placeholder=${"asdasd"} />`
-                )
-            })
-        
+        let inputFields = ""
+        this.name = name
+        this.fields.forEach((field)=>{
+            inputFields = inputFields + `<input 
+                                            class='${field.class}' 
+                                            placeholder='${field.placeholder}'
+                                            id='${field.id}'
+                                            type='${field.type}'
+                                            value='${field.value}'
+                                            />`
+        })
+
+        this.container.innerHTML = `
+        <form class='form' id='${this.name}'>
+        ${inputFields}
+        <button type='submit'>Aceptar Nuevo</button>
+        </form>
+        `
+        this.formNode = document.getElementById(this.name)
+        this.formNode.addEventListener("submit",this.submitForm)
     }
 
-    deleteForm(){
+    //Método que maneja cuando se aprieta el submit
+    submitForm(event){
+        event.preventDefault()
+        console.log("Submit form creado:")
+        this.formData = new FormData()
+        for( const input of event.target.children){
+            this.formData.setValue(input.value,input.id)
+        }
+        console.log(this.formData)
+    }
 
+    //Método que desmonta el formulario del DOM y destruye su eventListener
+    deleteForm(){
+        this.container.innerHTML = ``
     }
 }
 
@@ -221,13 +250,28 @@ const formFields = [
 
 
 const buttonCreateForm = document.getElementById("bCreateForm")
+const buttonDeleteForm = document.getElementById("bDeleteForm")
 const inputCreateForm = document.getElementById("formName")
 const formContainer = document.getElementById("createForm")
 
-const customForm = new newForm(formFields,formContainer)
+const customForm = new NewForm(formFields,formContainer)
 
-const handleCreateForm = (name) => (event) => {
-    customForm.createForm(name)
+buttonCreateForm.addEventListener("click",handleClick)
+buttonDeleteForm.addEventListener("click",handleClick)
+
+function handleClick(event){
+    switch(event.target.id){
+        case "bCreateForm":
+            if(inputCreateForm.value){
+                customForm.createForm(inputCreateForm.value)
+            } else {
+                alert("Debe ingresar un nombre")
+            }
+            break;
+        case "bDeleteForm":
+            if(customForm.name){
+                customForm.deleteForm()
+            }
+
+    }
 }
-
-buttonCreateForm.addEventListener("click",handleCreateForm(inputCreateForm.value))
