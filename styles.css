@@ -1,0 +1,18 @@
+.divForm{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: olivedrab;
+    padding: 10px;
+}
+
+.input{
+    margin-top: 5px;    
+}
