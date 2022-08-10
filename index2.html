@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor">
+        <input id="searchInput" class="input" placeholder="nombre del campo">
+        <button id="bSearch">Buscar elemento</button>
+        <div class="divForm">
+            <form class="form" id="formNoControlado">
+                <input class="input" placeholder="Nombre"/>
+                <input class="input" placeholder="Apellido"/>
+                <input class="input" type="number" placeholder="Teléfono"/>
+                <input class="input" type="password" placeholder="Password"/>
+                <input class="input repass" type="password" placeholder="Repetir Password"/>
+                <button class="input" type="submit" id="noControlAccept">Aceptar Interior</button>
+            </form>
+        </div>
+        <div class="divForm">
+            <form class="form" id="formControlado">
+                <input class="input" placeholder="Nombre"/>
+                <input class="input" placeholder="Apellido"/>
+                <input class="input" placeholder="Teléfono"/>
+                <input class="input" placeholder="Password"/>
+                <input class="input repass" placeholder="Repetir Password"/>
+            </form>
+            <button class="input" id="controlAccept">Aceptar Exterior</button>
+        </div>
+        <input id="formName" placeholder="Ingrese el nombre del form">
+        <button id="bCreateForm">Crear Form</button>
+        <button id="bDeleteForm">Borrar Form</button>
+        <div id="createForm" class="divForm">
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="object.js"></script>
+</body>
+</html>

@@ -60,6 +60,7 @@ const datosControlado = new FormData()
 //Definición de mis elementos de DOM
 const formNoControlado = document.getElementById("formNoControlado")
 const formControlado = document.getElementById("formControlado")
+
 const submitControlado = document.getElementById("controlAccept")
 
 const repPassword = document.querySelectorAll(".repass")
@@ -275,3 +276,37 @@ function handleClick(event){
 
     }
 }
+
+formContainer.innerHTML = `
+<div id="contenedor">
+<input id="searchInput" class="input" placeholder="nombre del campo">
+<button id="bSearch">Buscar elemento</button>
+<div class="divForm">
+    <form class="form" id="formNoControlado">
+        <input class="input" placeholder="Nombre"/>
+        <input class="input" placeholder="Apellido"/>
+        <input class="input" type="number" placeholder="Teléfono"/>
+        <input class="input" type="password" placeholder="Password"/>
+        <input class="input repass" type="password" placeholder="Repetir Password"/>
+        <button class="input" type="submit" id="noControlAccept">Aceptar Interior</button>
+    </form>
+</div>
+<div class="divForm">
+    <form class="form" id="formControlado">
+        <input class="input" placeholder="Nombre"/>
+        <input class="input" placeholder="Apellido"/>
+        <input class="input" placeholder="Teléfono"/>
+        <input class="input" placeholder="Password"/>
+        <input class="input repass" placeholder="Repetir Password"/>
+    </form>
+    <button class="input" id="controlAccept">Aceptar Exterior</button>
+</div>
+<input id="formName" placeholder="Ingrese el nombre del form">
+<button id="bCreateForm">Crear Form</button>
+<button id="bDeleteForm">Borrar Form</button>
+<div id="createForm" class="divForm">
+</div>
+</div>
+`
+
+formContainer.innerHTML = ``
